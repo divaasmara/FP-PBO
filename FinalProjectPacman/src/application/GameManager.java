@@ -102,5 +102,24 @@ public class GameManager {
         root.getChildren().remove(this.scoreBoard.lifes);
         root.getChildren().add(winGame);
     }
-  
+    
+    /**
+     * Restart the game
+     * @param event
+     */
+    public void restartGame(KeyEvent event) {
+        if (event.getCode() == KeyCode.ESCAPE && gameEnded) {
+            root.getChildren().clear();
+            this.cookieSet.clear();
+            this.ghosts.clear();
+            this.drawBoard();
+            this.pacman.setCenterX(2.5 * BarObstacle.THICKNESS);
+            this.pacman.setCenterY(2.5 * BarObstacle.THICKNESS);
+            this.lifes = 3;
+            this.score = 0;
+            this.cookiesEaten = 0;
+            gameEnded = false;
+        }
+    }
+    
 }
