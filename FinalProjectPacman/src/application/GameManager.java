@@ -242,5 +242,38 @@ public class GameManager {
         this.scoreBoard = new Score(root);
     }
     
+    /**
+     * Generates the ghosts for the pacman!
+     */
+    public void generateGhosts() {
+        this.ghosts.add(new Ghost(22 * BarObstacle.THICKNESS, 9.5 * BarObstacle.THICKNESS, Color.DEEPPINK, maze, this));
+        this.ghosts.add(new Ghost(25 * BarObstacle.THICKNESS, 9.5 * BarObstacle.THICKNESS, Color.GREENYELLOW, maze, this));
+        this.ghosts.add(new Ghost(22 * BarObstacle.THICKNESS, 13.5 * BarObstacle.THICKNESS, Color.BLACK, maze, this));
+        this.ghosts.add(new Ghost(25 * BarObstacle.THICKNESS, 13.5 * BarObstacle.THICKNESS, Color.SPRINGGREEN, maze, this));
+    }
+
+    /**
+     * Moves the pacman
+     * @param event
+     */
+    public void movePacman(KeyEvent event) {
+        for (Ghost ghost : this.ghosts) {
+            ghost.run();
+        }
+        switch(event.getCode()) {
+            case RIGHT:
+                this.rightPacmanAnimation.start();
+                break;
+            case LEFT:
+                this.leftPacmanAnimation.start();
+                break;
+            case UP:
+                this.upPacmanAnimation.start();
+                break;
+            case DOWN:
+                this.downPacmanAnimation.start();
+                break;
+        }
+    }
     
 }
