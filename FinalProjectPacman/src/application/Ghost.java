@@ -86,6 +86,61 @@ public class Ghost extends Rectangle implements Runnable {
                 break;
         }
     }
+    
+     /**
+     *
+     * @param whereToGo
+     * @param whereToChangeTo
+     * @param leftEdge
+     * @param topEdge
+     * @param rightEdge
+     * @param bottomEdge
+     * @param padding
+     */
+    public void moveUntilYouCant(String whereToGo, String whereToChangeTo, double leftEdge, double topEdge, double rightEdge, double bottomEdge, double padding) {
+        double step = 5;
+        switch (whereToGo) {
+            case "left":
+                if (!maze.isTouching(leftEdge, topEdge, padding)) {
+                    setX(leftEdge - step);
+                } else {
+                    while (maze.isTouching(getX(), getY(), padding)) {
+                        setX(getX() + 1);
+                    }
+                    direction = whereToChangeTo;
+                }
+                break;
+            case "right":
+                if (!maze.isTouching(rightEdge, topEdge, padding)) {
+                    setX(leftEdge + step);
+                } else {
+                    while (maze.isTouching(getX() + getWidth(), getY(), padding)) {
+                        setX(getX() - 1);
+                    }
+                    direction = whereToChangeTo;
+                }
+                break;
+            case "up":
+                if (!maze.isTouching(leftEdge, topEdge, padding)) {
+                    setY(topEdge - step);
+                } else {
+                    while (maze.isTouching(getX(), getY(), padding)) {
+                        setY(getY() + 1);
+                    }
+                    direction = "left";
+                }
+                break;
+            case "down":
+                if (!maze.isTouching(leftEdge, bottomEdge, padding)) {
+                    setY(topEdge + step);
+                } else {
+                    while (maze.isTouching(getX(), getY() + getHeight(), padding)) {
+                        setY(getY() - 1);
+                    }
+                    direction = "right";
+                }
+                break;
+        }
 
- 
+    }
 }
