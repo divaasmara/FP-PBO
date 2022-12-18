@@ -16,6 +16,14 @@ public class BarObstacle extends Rectangle {
     public BarObstacle(double x, double y, String orientation, double length) {
         this.setX(x);
         this.setY(y);
+        
+         if (orientation.equals("horizontal")) {
+            this.setHeight(BarObstacle.THICKNESS);
+            this.setWidth(length * BarObstacle.THICKNESS);
+        } else {
+            this.setHeight(length * BarObstacle.THICKNESS);
+            this.setWidth(BarObstacle.THICKNESS);
+        }
 
     }
 }
